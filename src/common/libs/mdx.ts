@@ -26,7 +26,10 @@ export const loadMdxFiles = (slug: string): MdxFileProps[] => {
     const source = fs.readFileSync(filePath, 'utf-8');
     const { content, data } = matter(source);
 
-    const mdxCompiler = remark().use(remarkParse).use(remarkGfm).use(remarkMdx);
+    const mdxCompiler = remark()
+      .use(remarkParse as never)
+      .use(remarkGfm as never) // 强制类型转换以解决类型不匹配问题
+      .use(remarkMdx);
     const mdxContent = mdxCompiler.processSync(content).toString();
 
     return {
