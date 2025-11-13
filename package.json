@@ -87,6 +87,10 @@
       "yarn prettier --write"
     ]
   },
+  "engines": {
+    "node": ">=20.19.5",
+    "pnpm": ">=8.15.1"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.8.0",
     "@commitlint/config-conventional": "^17.8.0",
