@@ -1,3 +1,5 @@
+'use client';
+
 import styled from '@emotion/styled';
 import { memo, ReactNode, useEffect, useState } from 'react';
 
