@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { signIn } from 'next-auth/react';
+// import { signIn } from 'next-auth/react';
 import { BsGithub as GithubIcon } from 'react-icons/bs';
 import { FcGoogle as GoogleIcon } from 'react-icons/fc';
 
@@ -38,7 +38,7 @@ const ChatAuth = ({ isWidget = false }: { isWidget?: boolean }) => {
           {Providers?.map((button) => (
             <Button
               key={button.id}
-              onClick={() => signIn(button.id)}
+              // onClick={() => signIn(button.id)}
               className={`flex w-full items-center justify-center border ${button.bgColor} py-2.5 shadow-sm transition duration-300 hover:scale-[101%] lg:w-fit ${isWidget && '!w-full'}`}
               data-umami-event={`Sign In to Chat: ${button.label}`}
             >

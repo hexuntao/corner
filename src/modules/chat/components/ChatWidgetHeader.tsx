@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import { signOut, useSession } from 'next-auth/react';
+// import { signOut, useSession } from 'next-auth/react';
 import { BiMinus as MinimizeIcon } from 'react-icons/bi';
 import { HiOutlineLogout as SignOutIcon } from 'react-icons/hi';
 import { LuMaximize2 as MaximizeIcon } from 'react-icons/lu';
@@ -7,7 +7,8 @@ import { MdClose as CloseIcon } from 'react-icons/md';
 
 import useChatStore from '@/common/stores/useChatStore';
 const ChatWidgetHeader = () => {
-  const { data: session } = useSession();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: session } = { data: false } as any;
   const { toggleChat } = useChatStore();
 
   const handleMaximize = () => Router.push('/guestbook');
@@ -45,7 +46,7 @@ const ChatWidgetHeader = () => {
       </div>
       {session && (
         <SignOutIcon
-          onClick={() => signOut()}
+          // onClick={() => signOut()}
           size={22}
           className='cursor-pointer text-red-400'
           data-umami-event='Sign Out from Chat Widget'

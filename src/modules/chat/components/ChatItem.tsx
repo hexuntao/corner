@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import Image from 'next/image';
-import { useSession } from 'next-auth/react';
-import { FiTrash2 as DeleteIcon } from 'react-icons/fi';
+// import { useSession } from 'next-auth/react';
+// import { FiTrash2 as DeleteIcon } from 'react-icons/fi';
 import { MdAdminPanelSettings as AdminIcon } from 'react-icons/md';
 
 import { MessageProps } from '@/common/types/chat';
@@ -13,15 +13,15 @@ interface ChatItemProps extends MessageProps {
 }
 
 const ChatItem = ({
-  id,
+  // id,
   image,
   name,
   email,
   message,
   created_at,
-  onDelete,
+  // onDelete,
 }: ChatItemProps) => {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   const authorEmail = 'hexuntao@gmail.com';
 
@@ -37,9 +37,9 @@ const ChatItem = ({
     return part;
   });
 
-  const handleDeleteMessage = () => {
-    onDelete(id);
-  };
+  // const handleDeleteMessage = () => {
+  //   onDelete(id);
+  // };
 
   return (
     <div className='flex items-start gap-3 px-3'>
@@ -79,14 +79,14 @@ const ChatItem = ({
             {modifiedMessage}
           </p>
           <div className='flex items-center gap-3'>
-            {(session?.user?.email === email ||
+            {/* {(session?.user?.email === email ||
               session?.user?.email === authorEmail) && (
               <DeleteIcon
                 size={17}
                 className='hidden cursor-pointer text-red-500 group-hover:flex'
                 onClick={handleDeleteMessage}
               />
-            )}
+            )} */}
           </div>
         </div>
         <div className='flex md:hidden'>
