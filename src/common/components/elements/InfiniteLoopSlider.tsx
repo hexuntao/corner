@@ -1,6 +1,5 @@
 'use client';
 
-import styled from '@emotion/styled';
 import { ReactNode } from 'react';
 
 interface InfiniteLoopSliderProps {
@@ -13,17 +12,12 @@ const InfiniteLoopSlider = ({
   isReverse = false,
 }: InfiniteLoopSliderProps) => {
   return (
-    <StyledSlider
-      className='flex w-fit animate-looping-tag'
-      isReverse={isReverse}
+    <div
+      className={`flex w-fit animate-looping-tag ${isReverse ? 'animate-reverse' : ''}`}
     >
       {children}
-    </StyledSlider>
+    </div>
   );
 };
 
 export default InfiniteLoopSlider;
-
-const StyledSlider = styled.div<{ isReverse: boolean }>`
-  animation-direction: ${({ isReverse }) => (isReverse ? 'reverse' : 'normal')};
-`;

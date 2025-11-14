@@ -1,6 +1,5 @@
 'use client';
 
-import styled from '@emotion/styled';
 import { ReactNode } from 'react';
 
 interface CardProps {
@@ -11,18 +10,13 @@ interface CardProps {
 
 const Card = ({ children, className = '', ...others }: CardProps) => {
   return (
-    <StyledCard
-      className={`rounded-xl bg-white shadow-sm transition-all duration-300 ${className} `}
+    <div
+      className={`bg-opacity-05 dark:bg-opacity-05 rounded-xl bg-white shadow-sm transition-all duration-300 dark:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05)] ${className}`}
       {...others}
     >
       {children}
-    </StyledCard>
+    </div>
   );
 };
 
 export default Card;
-
-const StyledCard = styled.div`
-  background-color: hsla(0, 0%, 100%, 0.05);
-  box-shadow: inset 0 0 0 1px hsla(0, 0%, 100%, 0.05);
-`;
