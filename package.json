@@ -33,6 +33,7 @@
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview"
   },
   "dependencies": {
+    "@emotion/styled": "^11.14.1",
     "@giscus/react": "^2.4.0",
     "@headlessui/react": "^1.7.19",
     "@mdx-js/loader": "^2.3.0",
@@ -83,20 +84,10 @@
     "yarn": "^1.22.22",
     "zustand": "^4.5.7"
   },
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,html,css,json}": [
-      "yarn prettier --write"
-    ]
-  },
-  "engines": {
-    "node": ">=20.19.5",
-    "pnpm": ">=8.15.1"
-  },
   "devDependencies": {
     "@commitlint/cli": "^17.8.0",
     "@commitlint/config-conventional": "^17.8.0",
     "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.3.0",
     "@testing-library/user-event": "^14.6.1",
@@ -126,5 +117,14 @@
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4",
     "wrangler": "4.21.x"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,html,css,json}": [
+      "yarn prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=20.19.5",
+    "pnpm": ">=8.15.1"
   }
 }
