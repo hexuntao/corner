@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { getDatabase, onValue, ref, remove, set } from 'firebase/database';
-// import { useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -12,8 +12,8 @@ import ChatInput from './ChatInput';
 import ChatList from './ChatList';
 
 const Chat = ({ isWidget = false }: { isWidget?: boolean }) => {
-  // const { data: session } = useSession();
-  const { session } = { session: false };
+  const { data: session } = useSession();
+
   const [messages, setMessages] = useState<MessageProps[]>([]);
 
   const database = getDatabase(firebase);
@@ -25,9 +25,9 @@ const Chat = ({ isWidget = false }: { isWidget?: boolean }) => {
 
     set(messageRef, {
       id: messageId,
-      // name: session?.user?.name,
-      // email: session?.user?.email,
-      // image: session?.user?.image,
+      name: session?.user?.name,
+      email: session?.user?.email,
+      image: session?.user?.image,
       message,
       created_at: new Date().toISOString(),
       is_show: true,

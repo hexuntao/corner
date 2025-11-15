@@ -1,5 +1,6 @@
 'use client';
 
+import styled from '@emotion/styled';
 import { memo, ReactNode, useEffect, useState } from 'react';
 
 import InfiniteLoopSlider from '@/common/components/elements/InfiniteLoopSlider';
@@ -39,13 +40,7 @@ const Skills = () => {
       <div className='flex w-full'>
         <div className='relative flex w-full flex-col justify-start gap-y-4 overflow-hidden py-2'>
           {sliders}
-          <div
-            className='fade pointer-events-none absolute inset-0 hidden dark:flex'
-            style={{
-              background:
-                'linear-gradient(90deg, #121212, transparent 20%, transparent 80%, #121212)',
-            }}
-          />
+          <StyledFade className='fade hidden dark:flex' />
         </div>
       </div>
     </div>
@@ -53,3 +48,16 @@ const Skills = () => {
 };
 
 export default Skills;
+
+const StyledFade = styled.div`
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #121212,
+    transparent 20%,
+    transparent 80%,
+    #121212
+  );
+  position: absolute;
+  inset: 0;
+`;

@@ -1,10 +1,9 @@
 import clsx from 'clsx';
-// import { signOut, useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { HiOutlineLogout as SignOutIcon } from 'react-icons/hi';
 
 const ChatUserInfo = ({ isWidget = false }: { isWidget?: boolean }) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: session } = { data: false } as any;
+  const { data: session } = useSession();
 
   const userName = session?.user?.name ?? null;
   const userEmail = session?.user?.email ?? null;
@@ -25,7 +24,7 @@ const ChatUserInfo = ({ isWidget = false }: { isWidget?: boolean }) => {
         <>
           <div className='hidden text-neutral-500 md:block'>•</div>
           <div
-            // onClick={() => signOut()}
+            onClick={() => signOut()}
             className='flex cursor-pointer items-center gap-1 font-medium text-red-500'
             data-umami-event='Sign Out from Chat Page'
           >

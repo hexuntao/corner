@@ -1,5 +1,6 @@
 'use client';
 
+import styled from '@emotion/styled';
 import clsx from 'clsx';
 
 interface MobileMenuButtonProps {
@@ -18,23 +19,48 @@ const MobileMenuButton = ({
   const menuSpanData = [{ index: 1 }, { index: 2 }, { index: 3 }];
 
   return (
-    <div
-      className='flex h-[21px] w-[26px] cursor-pointer flex-col justify-between lg:hidden'
-      onClick={handleMenuToggle}
-    >
+    <StyledMenu className='flex lg:hidden' onClick={handleMenuToggle}>
       {menuSpanData.map((item) => (
-        <span
+        <StyledMenuSpan
           key={item.index}
           className={clsx(
-            'h-[3px] w-full rounded-full bg-neutral-950 transition-all duration-500 dark:bg-neutral-100',
-            expandMenu && item.index === 1 && 'origin-left rotate-45',
-            expandMenu && item.index === 2 && 'w-0',
-            expandMenu && item.index === 3 && 'origin-left -rotate-45',
+            'bg-neutral-950 dark:bg-neutral-100 ',
+            expandMenu && 'active',
           )}
         />
       ))}
-    </div>
+    </StyledMenu>
   );
 };
 
 export default MobileMenuButton;
+
+const StyledMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 21px;
+  width: 26px;
+  cursor: pointer;
+`;
+
+const StyledMenuSpan = styled.span`
+  width: 100%;
+  height: 3px;
+  transition: all 0.5s ease;
+  border-radius: 10px;
+
+  &.active:nth-of-type(1),
+  &.active:nth-of-type(3) {
+    transform-origin: left;
+  }
+  &.active:nth-of-type(1) {
+    transform: rotate(45deg);
+  }
+  &.active:nth-of-type(2) {
+    width: 0;
+  }
+  &.active:nth-of-type(3) {
+    transform: rotate(-45deg);
+  }
+`;

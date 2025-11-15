@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Corner</h1>
-  <p>🔥 个人网站，使用Next.js、TypeScript、Tailwind CSS、SWR、Firebase和Prisma与PostgreSQL从零开始构建</p>
+  <p>🔥 个人网站，使用Next.js、TypeScript、Tailwind CSS、SWR 和Prisma与PostgreSQL从零开始构建</p>
 </div>
 <br />
 
@@ -8,13 +8,8 @@
 
 本网站使用Next.js和其他有用的工具构建。
 
-不断进行改进，添加更多功能和内容。这个网站是我分享所学知识并为他人提供见解的地方。
-
 欢迎将本网站作为参考、灵感或模板使用，请遵循提供的许可证。您可以访问源代码来根据您的需求进行自定义。
 
-如果您认为本网站有帮助，请考虑留下评分。 😎👍🏻
-
-如果您有任何问题、建议或其他事项，请随时与我联系！ 🧑‍💻
 <br /><br />
 
 ## 技术栈
@@ -44,7 +39,6 @@
 
 本网站拥有多项功能，并将在未来持续更新和添加。
 
-
 - ### 💻 JavaScript 代码实验区
 
 一个简单直接的纯JavaScript代码实验区，提供实时反馈。
@@ -69,8 +63,6 @@
 
 本博客的项目数据来自通过Prisma Client连接的PostgreSQL数据库。此应用程序的数据库托管在Supabase DB上。用于检索项目数据的数据获取方法是：项目列表使用带有1秒重新验证的增量静态再生(ISR)，项目详情使用服务器端渲染(SSR)。
 <br /><br />
-
-
 
 ## 开始使用
 
@@ -98,10 +90,10 @@
 
 ### 2. 安装依赖
 
-建议使用**yarn**以便husky钩子能够正常工作。
+建议使用**pnpm**以便husky钩子能够正常工作。
 
 ```bash
-yarn install
+pnpm install
 ```
 
 ### 3. 配置.env
@@ -113,7 +105,7 @@ yarn install
 您可以使用以下命令启动服务器：
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 在浏览器中打开[http://localhost:3000](http://localhost:3000)查看结果。您可以通过修改`src/pages/index.tsx`来开始编辑页面。
