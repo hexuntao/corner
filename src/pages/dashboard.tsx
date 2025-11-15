@@ -12,9 +12,8 @@ interface DashboardPageProps {
   fallback: any;
 }
 
-const PAGE_TITLE = 'Dashboard';
-const PAGE_DESCRIPTION =
-  'This is my personal dashboard, built with Next.js API routes deployed as serverless functions.';
+const PAGE_TITLE = '仪表盘';
+const PAGE_DESCRIPTION = '';
 
 const DashboardPage: NextPage<DashboardPageProps> = ({ fallback }) => {
   return (
