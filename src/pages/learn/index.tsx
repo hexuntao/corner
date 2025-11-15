@@ -6,7 +6,7 @@ import PageHeading from '@/common/components/elements/PageHeading';
 import { LEARN_CONTENTS } from '@/common/constant/learn';
 import LearnModule from '@/modules/learn';
 
-const PAGE_TITLE = 'Learn';
+const PAGE_TITLE = '学习';
 const PAGE_DESCRIPTION = ``;
 
 const LearnPage: NextPage = () => {

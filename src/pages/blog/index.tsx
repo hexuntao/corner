@@ -4,7 +4,7 @@ import { NextSeo } from 'next-seo';
 import Container from '@/common/components/elements/Container';
 import BlogListNew from '@/modules/blog';
 
-const PAGE_TITLE = 'Blog';
+const PAGE_TITLE = '文章';
 
 const BlogPage: NextPage = () => {
   return (
