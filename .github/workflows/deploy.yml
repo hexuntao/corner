@@ -20,7 +20,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             # 进入项目目录
-            cd /var/www/corner
+            cd /opt/1panel/www/site/corner
 
             # 拉取最新代码
             git pull origin main
