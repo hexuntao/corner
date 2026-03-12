@@ -102,7 +102,7 @@ const BlogCardNew = ({
             <div className='flex justify-between gap-4 px-0.5 text-neutral-400'>
               <Tooltip title='by top'>
                 <Image
-                  src='/images/avatar.png'
+                  src='/images/avatar.jpg'
                   alt=''
                   width={25}
                   height={25}

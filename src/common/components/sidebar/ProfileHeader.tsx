@@ -20,7 +20,7 @@ const ProfileHeader = ({ expandMenu, imageSize }: ProfileHeaderProps) => {
       )}
     >
       <Image
-        src='/images/avatar.png'
+        src='/images/avatar.jpg'
         alt=''
         width={expandMenu ? 80 : imageSize}
         height={expandMenu ? 80 : imageSize}
