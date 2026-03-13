@@ -1,52 +1,81 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import useSWR from 'swr';
+import { useEffect, useMemo, useState } from 'react';
 import { useDebounce } from 'usehooks-ts';
 
 import EmptyState from '@/common/components/elements/EmptyState';
 import Pagination from '@/common/components/elements/Pagination';
 import SearchBar from '@/common/components/elements/SearchBar';
-import BlogCardNewSkeleton from '@/common/components/skeleton/BlogCardNewSkeleton';
 import { BlogItemProps } from '@/common/types/blog';
-import { fetcher } from '@/services/fetcher';
 
 import BlogCardNew from './BlogCardNew';
 import BlogFeaturedSection from './BlogFeaturedSection';
 
-const BlogListNew = () => {
+const POSTS_PER_PAGE = 6;
+
+interface BlogListNewProps {
+  initialData?: BlogItemProps[];
+}
+
+const BlogListNew = ({ initialData }: BlogListNewProps) => {
   const [page, setPage] = useState<number>(1);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-  const { data, error, mutate, isValidating } = useSWR(
-    `/api/blog?page=${page}&per_page=6&search=${debouncedSearchTerm}`,
-    fetcher,
-    {
-      revalidateOnFocus: false,
-      refreshInterval: 0,
-    },
-  );
+  // 客户端过滤和分页
+  const { filteredPosts, totalPages, totalPosts } = useMemo(() => {
+    // 按日期倒序排序（最新的在前）
+    const allPosts = [...(initialData || [])].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    );
 
-  const {
-    posts: blogData = [],
-    total_pages: totalPages = 1,
-    total_posts = 0,
-  } = data?.data || {};
+    // 搜索过滤
+    const filtered = debouncedSearchTerm
+      ? allPosts.filter((post) => {
+          const title = post.title?.rendered?.toLowerCase() || '';
+          const excerpt = post.excerpt?.rendered?.toLowerCase() || '';
+          const tags =
+            post.tags_list?.map((t) => t.name.toLowerCase()).join(' ') || '';
+          const searchLower = debouncedSearchTerm.toLowerCase();
+          return (
+            title.includes(searchLower) ||
+            excerpt.includes(searchLower) ||
+            tags.includes(searchLower)
+          );
+        })
+      : allPosts;
 
-  const handlePageChange = async (newPage: number) => {
-    await mutate();
+    const totalPosts = filtered.length;
+    const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE) || 1;
+
+    // 分页
+    const startIndex = (page - 1) * POSTS_PER_PAGE;
+    const endIndex = startIndex + POSTS_PER_PAGE;
+    const paginatedPosts = filtered.slice(startIndex, endIndex);
+
+    return {
+      filteredPosts: paginatedPosts,
+      totalPages,
+      totalPosts,
+    };
+  }, [initialData, debouncedSearchTerm, page]);
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
     router.push(
       {
         pathname: '/blog',
-        query: { page: newPage, search: debouncedSearchTerm },
+        query: {
+          page: newPage,
+          ...(debouncedSearchTerm && { search: debouncedSearchTerm }),
+        },
       },
       undefined,
       { shallow: true },
     );
-    setPage(newPage);
   };
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,21 +108,25 @@ const BlogListNew = () => {
   };
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     const queryPage = Number(router.query.page);
     if (!isNaN(queryPage) && queryPage !== page) {
       setPage(queryPage);
     }
-  }, [page, router.query.page, searchTerm]);
+  }, [page, router.query.page, mounted]);
 
   const renderEmptyState = () =>
-    !isValidating &&
-    (!data?.status || blogData.length === 0) && (
-      <EmptyState message={error ? '我错了...' : '还没写呢.'} />
+    filteredPosts.length === 0 && (
+      <EmptyState message={searchTerm ? '没有找到匹配的文章' : '还没写呢.'} />
     );
 
   return (
     <div className='space-y-10'>
-      <BlogFeaturedSection />
+      <BlogFeaturedSection initialData={initialData} />
 
       <div className='space-y-5'>
         <div className='mb-6 flex flex-col items-center justify-between gap-3 sm:flex-row'>
@@ -111,7 +144,7 @@ const BlogListNew = () => {
               </h4>
             )}
             <span className='rounded-full bg-neutral-300 px-2 py-1  text-xs text-neutral-900 dark:bg-neutral-700 dark:text-neutral-50'>
-              {total_posts}
+              {totalPosts}
             </span>
           </div>
           <SearchBar
@@ -122,29 +155,19 @@ const BlogListNew = () => {
         </div>
 
         <div className='grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3'>
-          {!isValidating ? (
-            <>
-              {blogData.map((item: BlogItemProps, index: number) => (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                >
-                  <BlogCardNew {...item} />
-                </motion.div>
-              ))}
-            </>
-          ) : (
-            <>
-              {new Array(3).fill(0).map((_, index) => (
-                <BlogCardNewSkeleton key={index} />
-              ))}
-            </>
-          )}
+          {filteredPosts.map((item: BlogItemProps, index: number) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+            >
+              <BlogCardNew {...item} />
+            </motion.div>
+          ))}
         </div>
 
-        {!isValidating && data?.status && (
+        {totalPages > 1 && (
           <Pagination
             totalPages={totalPages}
             currentPage={page}

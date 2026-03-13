@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Corner 个人网站",
+    "slug": "corner-website",
+    "description": "基于 Next.js 15 构建的现代化个人网站，集成博客、项目展示、实时留言板等功能模块",
+    "image": "/content/images/projects/corner-cover.png",
+    "link_demo": "https://hexuntao.dpdns.org",
+    "link_github": "https://github.com/hexuntao/corner",
+    "stacks": "[\"Next.js\", \"React\", \"TypeScript\", \"Tailwind CSS\", \"Prisma\", \"PostgreSQL\", \"Firebase\", \"SWR\"]",
+    "content": "# Corner 个人网站\n\n这是一个功能完整的个人网站项目，使用最新的 Web 技术栈构建。\n\n## 主要功能\n\n- 📝 **博客系统** - 支持Markdown渲染、代码高亮、评论功能\n- 🗂️ **项目展示** - 展示个人项目，支持分类和搜索\n- 💬 **实时留言板** - 基于 Firebase 的实时聊天功能\n- 🎧 **Spotify 状态** - 显示当前播放的音乐\n- 📊 **WakaTime 统计** - 可视化编码时间统计\n\n## 技术亮点\n\n### 前端技术\n- **Next.js 15** - 使用 App Router 和 Server Components\n- **TypeScript** - 类型安全\n- **Tailwind CSS** - 原子化 CSS\n- **Framer Motion** - 流畅的动画效果\n\n### 后端技术\n- **Prisma** - 类型安全的 ORM\n- **PostgreSQL** - 关系型数据库（Supabase 托管）\n- **Next.js API Routes** - 服务端 API\n\n### 实时功能\n- **Firebase** - 实时数据库用于留言板\n- **SWR** - 数据获取和缓存\n\n## 部署\n\n项目主要部署在 Vercel。\n\n## 开发体验\n\n```bash\n# 安装依赖\npnpm install\n\n# 启动开发服务器\npnpm dev\n\n# 构建生产版本\npnpm build\n```",
+    "is_show": true,
+    "is_featured": true,
+    "updated_at": "2024-01-15T10:00:00"
+  }
+]

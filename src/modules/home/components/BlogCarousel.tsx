@@ -1,34 +1,28 @@
+import blogsData from '@content/blogs/blogs.json';
 import { motion } from 'framer-motion';
 import { useMemo, useRef } from 'react';
 import { useDraggable } from 'react-use-draggable-scroll';
-import useSWR from 'swr';
 
-import BlogCardNewSkeleton from '@/common/components/skeleton/BlogCardNewSkeleton';
 import { BlogItemProps } from '@/common/types/blog';
 import BlogCardNew from '@/modules/blog/components/BlogCardNew';
-import { fetcher } from '@/services/fetcher';
 
 const BlogCarousel = () => {
-  const { data, isLoading } = useSWR(`/api/blog?page=1&per_page=4`, fetcher, {
-    revalidateOnFocus: false,
-    refreshInterval: 0,
-  });
-
+  // 获取前 4 篇文章，按日期倒序排序（最新的在前）
   const blogData: BlogItemProps[] = useMemo(() => {
-    return data?.data?.posts || [];
-  }, [data]);
+    return [...blogsData]
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 4)
+      .map((blog) => ({
+        ...blog,
+        total_views_count: 0,
+      }));
+  }, []);
 
   const ref =
     useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
   const { events } = useDraggable(ref);
 
   const renderBlogCards = () => {
-    if (isLoading) {
-      return Array.from({ length: 3 }, (_, index) => (
-        <BlogCardNewSkeleton key={index} />
-      ));
-    }
-
     return blogData.map((item, index) => (
       <motion.div
         key={index}

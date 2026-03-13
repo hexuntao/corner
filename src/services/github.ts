@@ -32,29 +32,37 @@ export const fetchGithubData = async (
   username: string,
   token: string | undefined,
 ) => {
-  const response = await axios.post(
-    GITHUB_USER_ENDPOINT,
-    {
-      query: GITHUB_USER_QUERY,
-      variables: {
-        username: username,
+  try {
+    const response = await axios.post(
+      GITHUB_USER_ENDPOINT,
+      {
+        query: GITHUB_USER_QUERY,
+        variables: {
+          username: username,
+        },
       },
-    },
-    {
-      headers: {
-        Authorization: `bearer ${token}`,
+      {
+        headers: {
+          Authorization: `bearer ${token}`,
+        },
       },
-    },
-  );
+    );
 
-  const status: number = response.status;
-  const responseJson = response.data;
+    const status: number = response.status;
+    const responseJson = response.data;
 
-  if (status > 400) {
-    return { status, data: {} };
+    if (status >= 400) {
+      return { status, data: null };
+    }
+
+    return { status, data: responseJson.data.user };
+  } catch (error) {
+    // Handle axios errors (401, 404, etc.)
+    if (axios.isAxiosError(error)) {
+      return { status: error.response?.status || 500, data: null };
+    }
+    return { status: 500, data: null };
   }
-
-  return { status, data: responseJson.data.user };
 };
 
 export const getGithubUser = async (type: string) => {

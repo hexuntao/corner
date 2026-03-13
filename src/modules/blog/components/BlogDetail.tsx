@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 import Breakline from '@/common/components/elements/Breakline';
@@ -19,9 +20,21 @@ const BlogDetail = ({
   const { data: viewsData } = useSWR(
     `/api/views?slug=${slug}&id=${id}`,
     fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      shouldRetryOnError: false,
+      errorRetryCount: 2,
+    },
   );
 
-  const viewsCount = viewsData?.views || 0;
+  const [viewsCount, setViewsCount] = useState(0);
+
+  useEffect(() => {
+    if (viewsData?.views !== undefined) {
+      setViewsCount(viewsData.views);
+    }
+  }, [viewsData]);
   const tagList = tags_list || [];
 
   const readingTimeMinutes = calculateReadingTime(content?.rendered) ?? 0;

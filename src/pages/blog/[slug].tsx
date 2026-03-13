@@ -1,5 +1,6 @@
+import blogsData from '@content/blogs/blogs.json';
 import axios from 'axios';
-import { GetServerSideProps, NextPage } from 'next';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import { NextSeo } from 'next-seo';
 import { useEffect } from 'react';
@@ -9,27 +10,24 @@ import Container from '@/common/components/elements/Container';
 import { formatExcerpt } from '@/common/helpers';
 import { BlogDetailProps } from '@/common/types/blog';
 import BlogDetail from '@/modules/blog/components/BlogDetail';
-import { getBlogDetail } from '@/services/blog';
 
 const GiscusComment = dynamic(
   () => import('@/modules/blog/components/GiscusComment'),
 );
 
 interface BlogDetailPageProps {
-  blog: {
-    data: BlogDetailProps;
-  };
+  blog: BlogDetailProps;
 }
 
 const BlogDetailPage: NextPage<BlogDetailPageProps> = ({ blog }) => {
-  const blogData = blog?.data || {};
+  const blogData = blog || {};
 
-  const slug = `blog/${blogData?.slug}?id=${blogData?.id}`;
+  const slug = `blog/${blogData?.slug}`;
   const canonicalUrl = `https://hexuntao.dpdns.org/${slug}`;
   const description = formatExcerpt(blogData?.excerpt?.rendered);
 
   const incrementViews = async () => {
-    await axios.post(`/api/views?&slug=${blogData?.slug}`);
+    await axios.post(`/api/views?slug=${blogData?.slug}&id=${blogData?.id}`);
   };
 
   useEffect(() => {
@@ -49,7 +47,7 @@ const BlogDetailPage: NextPage<BlogDetailPageProps> = ({ blog }) => {
           type: 'article',
           article: {
             publishedTime: blogData?.date,
-            modifiedTime: blogData?.date,
+            modifiedTime: blogData?.modified,
             authors: ['hexuntao'],
           },
           url: canonicalUrl,
@@ -74,32 +72,35 @@ const BlogDetailPage: NextPage<BlogDetailPageProps> = ({ blog }) => {
 
 export default BlogDetailPage;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const blogId = context.query?.id as string;
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = blogsData.map((blog) => ({
+    params: { slug: blog.slug },
+  }));
 
-  if (!blogId) {
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const slug = params?.slug as string;
+
+  const blog = blogsData.find((b) => b.slug === slug);
+
+  if (!blog) {
     return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  }
-
-  const response = await getBlogDetail(parseInt(blogId));
-
-  if (response?.status === 404) {
-    return {
-      redirect: {
-        destination: '/404',
-        permanent: false,
-      },
+      notFound: true,
     };
   }
 
   return {
     props: {
-      blog: response,
+      blog: {
+        ...blog,
+        total_views_count: 0,
+      },
     },
+    revalidate: 60,
   };
 };

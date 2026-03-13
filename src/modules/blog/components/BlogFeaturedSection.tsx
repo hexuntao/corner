@@ -1,38 +1,26 @@
-import React, { useMemo } from 'react';
-import useSWR from 'swr';
+import React from 'react';
 
-import BlogFeaturedHeroSkeleton from '@/common/components/skeleton/BlogFeaturedHeroSkeleton';
 import { BlogItemProps } from '@/common/types/blog';
-import { fetcher } from '@/services/fetcher';
 
 import BlogFeaturedHero from './BlogFeaturedHero';
 
-const BlogFeaturedSection = () => {
-  const { data, isLoading } = useSWR(
-    `/api/blog?page=1&per_page=4&categories=11`,
-    fetcher,
-    {
-      revalidateOnFocus: false,
-      refreshInterval: 0,
-    },
-  );
+interface BlogFeaturedSectionProps {
+  initialData?: BlogItemProps[];
+}
 
-  const featuredData: BlogItemProps[] = useMemo(() => {
-    if (data?.status && data?.data?.posts && Array.isArray(data?.data?.posts)) {
-      return data?.data?.posts;
-    }
-    return [];
-  }, [data]);
+const BlogFeaturedSection = ({
+  initialData = [],
+}: BlogFeaturedSectionProps) => {
+  // 取前 4 篇文章作为精选文章，按日期倒序排序（最新的在前）
+  const featuredData = [...initialData]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 4);
 
-  return (
-    <>
-      {!isLoading ? (
-        <BlogFeaturedHero data={featuredData} />
-      ) : (
-        <BlogFeaturedHeroSkeleton />
-      )}
-    </>
-  );
+  if (featuredData.length === 0) {
+    return null;
+  }
+
+  return <BlogFeaturedHero data={featuredData} />;
 };
 
 export default BlogFeaturedSection;

@@ -4,7 +4,7 @@ import {
   BsGithub as GithubIcon,
   // BsInstagram as InstagramIcon,
   // BsLinkedin as LinkedinIcon,
-  // BsTwitter as TwitterIcon,
+  BsTwitter as TwitterIcon,
 } from 'react-icons/bs';
 import {
   // FiBookOpen as LearnIcon,
@@ -127,6 +127,16 @@ export const SOCIAL_MEDIA: MenuItemProps[] = [
     isShow: true,
     isExternal: true,
     eventName: 'Social: Github',
+    className: '!bg-black border border dark:border-neutral-700',
+    type: 'Link',
+  },
+  {
+    title: 'Twitter',
+    href: 'https://twitter.com/he_xuntao',
+    icon: <TwitterIcon size={iconSize} />,
+    isShow: true,
+    isExternal: true,
+    eventName: 'Social: Twitter',
     className: '!bg-black border border dark:border-neutral-700',
     type: 'Link',
   },

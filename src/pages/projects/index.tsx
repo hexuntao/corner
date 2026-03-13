@@ -1,10 +1,10 @@
+import projectsData from '@content/projects/projects.json';
 import { GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import { useState } from 'react';
 
 import Container from '@/common/components/elements/Container';
 import PageHeading from '@/common/components/elements/PageHeading';
-// import prisma from '@/common/libs/prisma';
 import { ProjectItemProps } from '@/common/types/projects';
 import Projects from '@/modules/projects';
 
@@ -39,22 +39,21 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
 export default ProjectsPage;
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const response = await prisma.projects.findMany({
-  //   orderBy: [
-  //     {
-  //       is_featured: 'desc',
-  //     },
-  //     {
-  //       updated_at: 'desc',
-  //     },
-  //   ],
-  // });
+  // 按 is_featured 和 updated_at 排序
+  const sortedProjects = projectsData.sort((a, b) => {
+    if (a.is_featured !== b.is_featured) {
+      return a.is_featured ? -1 : 1;
+    }
+    return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
+  });
+
+  // 只显示 is_show 为 true 的项目
+  const visibleProjects = sortedProjects.filter((p) => p.is_show);
 
   return {
     props: {
-      // projects: JSON.parse(JSON.stringify(response)),
-      projects: [],
+      projects: visibleProjects,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
