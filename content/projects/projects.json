@@ -6,10 +6,49 @@
     "image": "/content/images/projects/corner-cover.png",
     "link_demo": "https://hexuntao.dpdns.org",
     "link_github": "https://github.com/hexuntao/corner",
-    "stacks": "[\"Next.js\", \"React\", \"TypeScript\", \"Tailwind CSS\", \"Prisma\", \"PostgreSQL\", \"Firebase\", \"SWR\"]",
+    "stacks": "[\"Next.js\", \"React.js\", \"TypeScript\", \"Tailwind CSS\", \"Prisma\", \"PostgreSQL\", \"Firebase\", \"SWR\"]",
     "content": "# Corner 个人网站\n\n这是一个功能完整的个人网站项目，使用最新的 Web 技术栈构建。\n\n## 主要功能\n\n- 📝 **博客系统** - 支持Markdown渲染、代码高亮、评论功能\n- 🗂️ **项目展示** - 展示个人项目，支持分类和搜索\n- 💬 **实时留言板** - 基于 Firebase 的实时聊天功能\n- 🎧 **Spotify 状态** - 显示当前播放的音乐\n- 📊 **WakaTime 统计** - 可视化编码时间统计\n\n## 技术亮点\n\n### 前端技术\n- **Next.js 15** - 使用 App Router 和 Server Components\n- **TypeScript** - 类型安全\n- **Tailwind CSS** - 原子化 CSS\n- **Framer Motion** - 流畅的动画效果\n\n### 后端技术\n- **Prisma** - 类型安全的 ORM\n- **PostgreSQL** - 关系型数据库（Supabase 托管）\n- **Next.js API Routes** - 服务端 API\n\n### 实时功能\n- **Firebase** - 实时数据库用于留言板\n- **SWR** - 数据获取和缓存\n\n## 部署\n\n项目主要部署在 Vercel。\n\n## 开发体验\n\n```bash\n# 安装依赖\npnpm install\n\n# 启动开发服务器\npnpm dev\n\n# 构建生产版本\npnpm build\n```",
     "is_show": true,
     "is_featured": true,
     "updated_at": "2024-01-15T10:00:00"
+  },
+  {
+    "title": "Naa 权限管理系统",
+    "slug": "naa-admin",
+    "description": "一款开箱即用的企业级后台管理系统，支持用户权限、部门管理、操作日志等完整功能",
+    "image": "/content/images/projects/naa.png",
+    "link_demo": "https://docs.hexuntao.dpdns.org",
+    "link_github": "https://github.com/hexuntao/naa",
+    "stacks": "[\"Nest.js\", \"React.js\", \"TypeScript\", \"Ant Design Pro\", \"MySQL\", \"Redis\", \"TypeORM\", \"Umi Max\", \"Bull\", \"Swagger\"]",
+    "content": "# NAA 权限管理系统\n\n一款开箱即用的企业级后台管理系统，帮助你快速搭建中后台应用。\n\n## 🎯 为什么选择 NAA？\n\n无论是企业内部的 OA 系统、SaaS 平台，还是各类管理后台，NAA 都能帮你节省大量开发时间。系统内置了完整的权限管理、用户管理、日志监控等核心功能，开箱即用。\n\n## ✨ 核心功能\n\n### 👥 用户与权限\n- **用户管理** - 添加、编辑用户，分配角色和岗位\n- **角色管理** - 自定义角色，灵活配置菜单和数据权限\n- **部门管理** - 树形结构展示，支持多层级部门\n- **菜单管理** - 可视化配置菜单和按钮权限\n\n### 📋 系统管理\n- **岗位管理** - 定义职位和职责\n- **字典管理** - 系统数据字典统一维护\n- **参数配置** - 系统参数动态配置\n- **公告通知** - 发布和管理系统公告\n\n### 📊 监控与日志\n- **登录日志** - 记录所有登录行为\n- **操作日志** - 追踪用户操作历史\n- **在线用户** - 查看当前在线用户，支持强退\n- **缓存监控** - Redis 缓存状态查看和清理\n- **定时任务** - 可视化管理定时任务\n\n### 🛠️ 实用工具\n- **文件管理** - 文件上传下载，支持本地和云存储\n- **Excel 导出** - 一键导出数据为 Excel\n- **代码生成** - 基于数据表自动生成 CRUD 代码\n\n## 💻 技术栈\n\n**后端**：NestJS + MySQL + Redis + TypeORM + Bull\n\n**前端**：React 18 + Ant Design 5 + Umi Max\n\n**工程化**：TypeScript + Turbo + pnpm\n\n## 🚀 快速开始\n\n```bash\n# 克隆项目\ngit clone https://github.com/hexuntao/naa.git\ncd naa\n\n# 安装依赖\npnpm install\n\n# 启动开发服务\npnpm run dev\n```\n\n访问 http://localhost:6020 即可体验完整功能。\n\n## 📱 在线体验\n\n- 演示地址：https://admin.hexuntao.dpdns.org\n- 测试账号：test / 123456\n\n## 📦 项目特点\n\n- 🎨 **美观界面** - 采用 Ant Design 设计语言\n- 🔒 **安全可靠** - JWT 认证，细粒度权限控制\n- 📈 **高性能** - Redis 缓存，数据库优化\n- 📝 **完善的文档** - 详细的 API 文档和使用说明",
+    "is_show": true,
+    "is_featured": true,
+    "updated_at": "2025-01-15T05:00:00"
+  },
+  {
+    "title": "数熵AI",
+    "slug": "shushang-ai",
+    "description": "一站式数据关系发掘平台，通过大数据+AI技术帮助企业在客户数据与公共数据之间建立强关联",
+    "image": "/content/images/projects/shushang-ai.png",
+    "link_demo": "https://www.shushangai.com/",
+    "link_github": null,
+    "stacks": "[\"React.js\", \"Nest.js\", \"TypeScript\", \"Ant Design\", \"Big Data\", \"AI/ML\", \"Data Mining\"]",
+    "content": "# 数熵AI - 一站式数据关系发掘平台\n\n从简单获取数据上升到发掘万千数据背后之间的关系。\n\n## 🎯 产品定位\n\n数熵AI是一款由数熵数字科技打造的企业级数据关系发掘平台，致力于帮助企业在海量数据中发现有价值的关联关系，为数字化转型提供决策依据。\n\n## ✨ 核心能力\n\n### 🔗 数据关联发掘\n- **客户数据与公共数据关联** - 打破数据孤岛，建立跨数据源的强关联\n- **宏观环境洞察** - 通过大数据分析，精准把握市场宏观环境\n- **多维度分析** - 从供需变化、商业趋势等多维度解读数据\n\n### 📊 数据智能分析\n- **数据匹配** - 智能匹配相关数据源\n- **数据分析** - 深度挖掘数据价值\n- **数据挖掘** - 发现隐藏的数据规律\n- **数据发掘** - 提炼有价值的商业洞察\n\n### 🚀 应用场景\n- 市场趋势预测\n- 客户需求分析\n- 竞争对手研究\n- 投资决策支持\n- 数字化转型规划\n\n## 💼 商业价值\n\n- **降低决策风险** - 基于数据驱动的决策支持\n- **发现商业机会** - 识别市场空白和增长点\n- **提升运营效率** - 优化资源配置\n- **增强竞争优势** - 快速响应市场变化\n\n## 💻 技术架构\n\n平台采用现代化的前端架构，结合大数据和人工智能技术：\n\n- **前端框架**: React + Umi + TypeScript\n- **UI组件**: Ant Design\n- **数据处理**: 大数据分析引擎\n- **智能算法**: AI/机器学习模型\n\n## 📱 在线体验\n\n访问官网了解更多：https://www.shushangai.com/\n",
+    "is_show": true,
+    "is_featured": false,
+    "updated_at": "2025-03-14T00:00:00"
+  },
+  {
+    "title": "MTPC 多租户权限内核",
+    "slug": "mtpc",
+    "description": "业务无关、可嵌入、可组合的多租户权限内核，为 SaaS 和企业级应用提供类型安全的权限基础设施",
+    "image": "/content/images/projects/mtpc-bg.png",
+    "link_demo": "https://mtpc-site.vercel.app/docs",
+    "link_github": "https://github.com/hexuntao/mtpc",
+    "stacks": "[\"TypeScript\", \"Zod\", \"Hono\", \"Drizzle ORM\", \"Node.js\", \"Multi-Tenant\", \"RBAC\", \"Policy Engine\"]",
+    "content": "# MTPC - 多租户权限内核\n\n一个面向未来项目复用的权限基础设施内核，多租户优先、权限优先、类型优先。\n\n## 🎯 什么是 MTPC？\n\n**MTPC** (Multi-Tenant Permission Core) 是一个业务无关、可嵌入、可组合的多租户权限内核。\n\n它不是一个可直接部署的权限系统，而是权限系统的\"内核与引擎\"，用于被真实业务系统（SaaS、内部后台、B 端系统等）作为依赖引入。\n\n## ✨ 核心特性\n\n### 🔧 业务无关\n核心不包含 Department / User / Role / Menu 等具体业务模型，仅提供抽象与派生能力。你可以根据业务需求自由定义这些概念。\n\n### 📋 Schema-driven 单一事实源\nResource Definition 是唯一权威来源，其它一切（CRUD / Permission / Menu / Types）均由其派生：\n\n```\nResource Definition\n│\n├─→ CRUD Capability (logical)\n├─→ Permission Codes (typed)\n├─→ Menu Metadata (UI-agnostic)\n├─→ Validation Schemas\n└─→ Shared TypeScript Types\n```\n\n### ⚡ 编译期优先\n能在编译期生成的内容绝不推迟到运行期，确保类型安全与一致性：\n\n```typescript\n// 编译期生成权限码常量\nexport const PERMISSIONS = {\n  USER_CREATE: 'user:create',\n  USER_READ: 'user:read',\n  USER_UPDATE: 'user:update',\n  USER_DELETE: 'user:delete',\n} as const\n\n// 类型安全的权限检查\ntype Permission = typeof PERMISSIONS[keyof typeof PERMISSIONS]\n```\n\n### 📦 库而非服务\nMTPC 以内嵌库方式运行，不是独立微服务：\n\n| 特性 | MTPC | 权限系统 |\n| --- | --- | --- |\n| 部署方式 | 作为 npm 包引入 | 独立部署服务 |\n| 数据存储 | 由消费者系统管理 | 内置数据库 |\n| API 调用 | 函数调用 | HTTP/RPC |\n| 扩展方式 | 插件系统 | 配置文件 |\n\n### 🧩 可扩展优先\n所有企业级能力通过插件、钩子与策略扩展，而非硬编码。\n\n### 🔒 默认拒绝\n权限校验失败即拒绝访问，不存在\"隐式放行\"。\n\n## 💻 核心概念\n\n### Resource（资源）\nResource 是 MTPC 的核心抽象，表示一个\"可受权限控制的对象集合\"：\n\n```typescript\nconst userResource = defineResource({\n  name: 'user',\n  schema: z.object({\n    id: z.string(),\n    name: z.string(),\n    email: z.string().email(),\n  }),\n  features: {\n    creatable: true,\n    readable: true,\n    updatable: true,\n    deletable: true,\n  },\n})\n```\n\n### Permission（权限）\nPermission 是对 Resource 可执行操作的最小授权单元：\n\n```\nuser:create  - 创建用户\nuser:read    - 查看用户\nuser:update  - 更新用户\nuser:delete  - 删除用户\nuser:list    - 列出用户\n```\n\n### Policy（策略）\nPolicy 用于表达权限组合与条件规则，支持声明式规则和函数式动态判定。\n\n### Tenant（租户）\nTenant 是多租户隔离的第一等公民，所有权限判定都在 Tenant Context 下执行。\n\n## 🏗️ 架构设计\n\nMTPC 采用 **Core + Extensions** 的整体架构设计：\n\n```\n┌──────────────────────────────┐\n│   Business App               │\n│   (User / Role UI / Admin)   │\n└────────────▲─────────────────┘\n│      uses\n┌────────────┴─────────────────┐\n│   Official Extensions        │\n│   rbac / policy-cache / ...  │\n└────────────▲─────────────────┘\n│    built on\n┌────────────┴─────────────────┐\n│   MTPC Core                  │\n│   Resource / Policy / Tenant │\n└──────────────────────────────┘\n```\n\n## 📦 官方扩展\n\n| 包名 | 描述 |\n| --- | --- |\n| `@mtpc/rbac` | 基于角色的访问控制扩展 |\n| `@mtpc/policy-cache` | 策略缓存扩展，优化权限检查性能 |\n| `@mtpc/explain` | 权限决策解释扩展，用于调试和审计 |\n| `@mtpc/audit` | 审计日志扩展，记录权限操作 |\n| `@mtpc/data-scope` | 数据范围控制扩展，实现行级权限 |\n| `@mtpc/soft-delete` | 软删除扩展，支持数据恢复 |\n\n## 🔌 Adapter 层\n\nMTPC Core 不依赖任何具体技术栈，通过 Adapter 层对接：\n\n- **Web Framework**: Hono\n- **ORM / Database**: Drizzle ORM / PostgreSQL\n- **前端集成**: UI 权限消费模型\n\nAdapter 是可替换的，Core API 不随 Adapter 改变。\n\n## 🚀 快速开始\n\n```bash\n# 安装核心包\nnpm install @mtpc/core\n\n# 安装适配器（可选）\nnpm install @mtpc/adapter-hono\nnpm install @mtpc/adapter-drizzle\n```\n\n```typescript\nimport { createMTPC, defineResource } from '@mtpc/core'\n\n// 创建 MTPC 实例\nconst mtpc = createMTPC()\n\n// 定义资源\nconst userResource = defineResource({\n  name: 'user',\n  schema: z.object({\n    id: z.string(),\n    name: z.string(),\n    email: z.string().email()\n  }),\n  features: {\n    creatable: true,\n    readable: true,\n    updatable: true,\n    deletable: true\n  }\n})\n\n// 注册资源\nmtpc.registerResource(userResource)\n\n// 初始化\nawait mtpc.init()\n```\n\n## 💼 应用场景\n\n- **SaaS 平台** - 多租户权限隔离与管理\n- **企业内部后台** - 统一的权限控制基础\n- **B 端系统** - 复杂权限模型支撑\n- **微服务架构** - 嵌入式权限解决方案\n\n## 📱 在线体验\n\n- 官方文档：https://mtpc-site.vercel.app/docs\n- GitHub：https://github.com/hexuntao/mtpc\n\n## 🎁 项目价值\n\nMTPC 的价值不在于\"开箱即用\"，而在于：\n\n- **长期稳定** - API 设计考虑长期演进\n- **可组合** - 以库形式嵌入，灵活组合\n- **可演进** - Core + Extensions 架构支持渐进式扩展\n- **类型安全** - TypeScript 全程护航\n- **降低复杂度** - 通过派生而非配置减少重复\n",
+    "is_show": true,
+    "is_featured": false,
+    "updated_at": "2025-03-14T00:00:00"
   }
 ]
